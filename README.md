@@ -1,2 +1,2 @@
-video42
+MFP Accessible Video Player
 =======
