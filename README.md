@@ -2,7 +2,7 @@ MFP Accessible Video Player
 =======
 
     
-	The MFP Video Player is a project leading by the Multimedia France Production Group (a subsidiary of the French group France Télévisions) that conceived the player, in collaboration with Access42 Ltd that leaded the developments. The accessibility has been checked by the French Association BrailleNet that delivered the AccessiWeb Label testifying the MFP Video Player code is compliant with the Web Content Accessibility Guidelines (WCAG 2) at level double A (AA), and thus usable by any user regerdless one's abilities.
+	The MFP Video Player is a project leading by the Multimedia France Production Ltd (a subsidiary of the French group France Télévisions) that conceived the player, in collaboration with Access42 Ltd that leaded the developments. The accessibility has been checked by the French Association BrailleNet that delivered the AccessiWeb Label testifying the MFP Video Player code is compliant with the Web Content Accessibility Guidelines (WCAG 2) at level double A (AA), and thus usable by any user regerdless one's abilities.
 
     The MFP Video Player project is a fork of videojs <http://www.videojs.com/> to make it accessible and add some options useful for captionning and audiodescription.
 
