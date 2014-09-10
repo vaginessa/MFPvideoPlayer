@@ -94,8 +94,6 @@ Note :
 - if there isn't any Audio Description, do not add this line of code: the AD button will not appear.
 
 
-<div lang="fr">
-
 <a name="french-version"></a>Comment utiliser le lecteur vidéo accessible MFP
 ----
 
@@ -177,7 +175,3 @@ Et complétez le code en suivant la règle suivante :
 
 Note :
 - en l'absence d'audiodescription, n'ajoutez pas cette ligne de code : le bouton AD sera alors absent.
-
-</div>
-
-End of file.
