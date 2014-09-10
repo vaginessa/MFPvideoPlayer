@@ -5,7 +5,7 @@ The MFP Video Player is a project leading by the Multimedia France Production Lt
 
 The accessibility has been checked by the French Association BrailleNet that delivered the AccessiWeb Label testifying the MFP Video Player code is compliant with the Web Content Accessibility Guidelines (WCAG 2) at level double A (AA), and thus usable by any user regerdless one's abilities.
 
-The MFP Video Player project is a fork of [videojs](http://www.videojs.com/) to make it accessible and add some options useful for captionning and audiodescription. The code of videojs was originally modified without Git, and a lot of new specific options have been added. That's why it was impossible to contribute to the great work of Steve Heffernan (@heff) on videojs, but it's not an unfriendly fork, just a different work.
+The MFP Video Player project is a fork of [videojs](http://www.videojs.com/) to make it accessible and add some options useful for closed caption and audiodescription. The code of videojs was originally modified without Git, and a lot of new specific options have been added. That's why it was impossible to contribute to the great work of Steve Heffernan (@heff) on videojs, but it's not an unfriendly fork, just a different work.
 
 The initial project (videojs) was under an Apache2 license, and the new project embed the JS Mootools library under the MIT license. Both licenses are compatible with the GPL 3 license, which is the license of the MFP video Player. See the [FSF page about licenses compatibilities with the GPL](https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses) for more info.
 
@@ -16,7 +16,7 @@ How to use the MFP Accessible Video Player ([French version bellow](#french-vers
 ### How to embed the player
 
 
-The HTML code of the player just use the `<div>` element with an `id` "player" ; below a sample:
+The HTML code of the player just use the `<div>` element with an `id` "player", below a sample:
 
 	<div id="player">
 		<video id="video" controls="controls" height="480" width="640">
@@ -29,9 +29,9 @@ The HTML code of the player just use the `<div>` element with an `id` "player" ;
 	</div>
 
 
-Copy-paste this code where you want the player to be display on the page. 
+Copy-paste this code where you want the player to be displayed on the page. 
 
-Then, in the head element (between the tags `<head>` and `</head>`) of the document, you have to call external resources:
+Then, in the `head` element (between the tags `<head>` and `</head>`) of the document, you have to call external resources:
 
 	<!-- VideoJS -->
 	<link rel="stylesheet" href="client/scripts/video-js/video-js.css" type="text/css" />
@@ -56,12 +56,12 @@ Then, in the head element (between the tags `<head>` and `</head>`) of the docum
 		}, false);
 	</script>
 
-Note: you may have to change the path of the resources (`src` in `script` elements and `href` of the `link` elements) according of their actual location.
+Note: you may have to change the path of the resources (`src` in `script` elements and `href` of the `link` elements) according to their actual location.
 
 
 ### Enable Closed Caption
 
-In the video element (betweeen the tags `<video>` and `</video>`), in each closed captioning file you must add the following line of code:
+In the `video` element (betweeen the tags `<video>` and `</video>`), in each closed captioning file you must add the following line of code:
 
 	<track kind="captions" label="" src="" srclang="" data-transcription="" />
 
@@ -77,7 +77,7 @@ Example for a closed captioning file in French intitled "Français", with a tran
 		 srclang="fr" data-transcription="server/transcriptions/fr.txt" />
 
 Notes:
-- if there isn't any closed captions, you musn't add any line `<track ... />` : the button ST will not then be present;
+- if there isn't any closed captions, you musn't add any line `<track ... />` : the button ST will not be present;
 - if there isn't any transcript file (to be downloaded), `data-transcription` musn't be used: the link "Download the transcript" will not appear.
 
 
@@ -100,7 +100,7 @@ Note :
 ### Intégration du lecteur
 
 
-Le code HTML du lecteur est limité à l'élément `<div>` avec un `id` "player"; ci-dessous un code "type" :
+Le code HTML du lecteur est limité à l'élément `<div>` avec un `id` "player", ci-dessous un code "type" :
 
 	<div id="player">
 		<video id="video" controls="controls" height="480" width="640">
