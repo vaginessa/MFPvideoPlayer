@@ -1,9 +1,11 @@
 MFP Accessible Video Player
 =======
 
-The MFP Video Player is a project leading by the Multimedia France Production Ltd (a subsidiary of the French group France Télévisions) that conceived the player, in collaboration with Access42 Ltd that leaded the developments. The accessibility has been checked by the French Association BrailleNet that delivered the AccessiWeb Label testifying the MFP Video Player code is compliant with the Web Content Accessibility Guidelines (WCAG 2) at level double A (AA), and thus usable by any user regerdless one's abilities.
+The MFP Video Player is a project leading by the Multimedia France Production Ltd (a subsidiary of the French group France Télévisions) that conceived the player, in collaboration with Access42 Ltd that leaded the developments. 
 
-The MFP Video Player project is a fork of videojs <http://www.videojs.com/> to make it accessible and add some options useful for captionning and audiodescription.
+The accessibility has been checked by the French Association BrailleNet that delivered the AccessiWeb Label testifying the MFP Video Player code is compliant with the Web Content Accessibility Guidelines (WCAG 2) at level double A (AA), and thus usable by any user regerdless one's abilities.
+
+The MFP Video Player project is a fork of videojs <http://www.videojs.com/> to make it accessible and add some options useful for captionning and audiodescription. The code of videojs was originally modified without Git, and a lot of new specific options have been added. That's why it was impossible to contribute to the great work of Steve Heffernan (@heff) on videojs, but it's not an unfriendly fork, just a different work.
 
 The initial project (videojs) was under an Apache2 license, and the new project embed the JS Mootools library under the MIT license. Both licenses are compatible with the GPL 3 license, which is the license of the MFP video Player. See the FSF page about licenses compatibilities with the GPL <https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses> for more info.
 	
