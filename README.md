@@ -143,8 +143,7 @@ Enfin, dans l'élément `head` (entre les balises `<head>` et `</head>`) de la p
 Note : selon l'emplacement de ces ressources externes, les chemins (`src` des éléments `script` et `href` des éléments `link`) peuvent être changés. 
 
 
-Mise en place des sous-titres
----
+### Mise en place des sous-titres
 
 Dans l'élément `video` (entre les balises `<video>` et `</video>`), ajoutez pour chaque fichier de sous-titres la ligne de code suivante :
 
@@ -166,8 +165,7 @@ Notes :
 - en l'absence de transcript (à télécharger), `data-transcription` ne doit pas être renseigné : le lien "Télécharger le transcript" ne sera alors pas proposé.
 
 
-Mise en place de l'audiodescription
----
+### Mise en place de l'audiodescription
 
 Directement après l'élément `video` (balise `</video>`), ajoutez la ligne de code suivante :
 
