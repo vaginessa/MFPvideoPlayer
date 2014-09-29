@@ -104,12 +104,12 @@ Le code HTML du lecteur est limité à l'élément `<div>` avec un `id` "player"
 
 	<div id="player">
 		<video id="video" controls="controls" height="480" width="640">
-			<source src="client/medias/tontons_flingueurs_vo.mp4" type="video/mp4" />
-			<source src="client/medias/tontons_flingueurs_vo.webm" type="video/webm" />
-			<source src="client/medias/tontons_flingueurs_vo.ogv" type="video/ogg" />
+			<source src="client/medias/video_vo.mp4" type="video/mp4" />
+			<source src="client/medias/video_vo.webm" type="video/webm" />
+			<source src="client/medias/video_vo.ogv" type="video/ogg" />
 			<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" data-transcription="server/transcriptions/fr.txt" />
 		</video>
-		<audio src="client/medias/tontons_flingueurs_ad.mp3" preload="auto" hidden="hidden"></audio>
+		<audio src="client/medias/video_ad.mp3" preload="auto" hidden="hidden"></audio>
 	</div>
 
 Placez ce code à l'endroit souhaité dans la page où le lecteur doit être intégré.
