@@ -3602,8 +3602,9 @@ vjs.ControlBar.prototype.options_ = {
     //'durationDisplay': {}, /* Modification MFP */
     //'remainingTimeDisplay': {}, /* Modification MFP */
     'progressControl': {},
-    'CaptionsControl': {}, /* Modification MFP */
     'audiodescriptionControl': {}, /* Modification MFP */
+	'configControl': {},  /* Modification MFP */
+    'captionsControl': {}, /* Modification MFP */
     // 'fullscreenToggle': {}, /* Modification MFP */
     'muteToggle': {}, /* Modification MFP */
     'volumeControl': {},
@@ -3930,6 +3931,46 @@ vjs.RemainingTimeDisplay.prototype.updateContent = function(){
 
 vjs.CaptionsControl = vjs.Button.extend({
 	init: function (player, options) {
+
+		vjs.Button.call(this, player, options);
+	}
+});
+vjs.CaptionsControl.prototype.buttonText = '<img src="' + uiControls.captionsControl + '" alt="' + i18n['fr'].captionsControl.show + '" />';
+vjs.CaptionsControl.prototype.buildCSSClass = function(){
+  return 'mfp-captions';
+};
+vjs.CaptionsControl.prototype.onClick = function() {
+	var video = this.player_.el_.firstChild;
+	if (!this.el_.hasAttribute('data-displaycaptions')) { 
+		this.el_.setAttribute('data-displaycaptions', 'false'); 
+	}
+	var subtitlesselect = this.el_.parentNode.parentNode.parentNode.getElementsByTagName('select')[0];
+	if (this.el_.getAttribute('data-displaycaptions') == 'false') {
+		subtitlesselect.selectedIndex = this.el_.hasAttribute('data-subtitleslastindex') ? this.el_.getAttribute('data-subtitleslastindex') : '1';
+		this.el_.setAttribute('data-displaycaptions', 'true');
+		subtitlesselect.selectedIndex = '1';
+		this.el_.setAttribute('data-displaycaptions', 'true');
+		video.setAttribute('data-stenabled', 'true');
+	}
+	else {
+		this.el_.setAttribute('data-subtitleslastindex', subtitlesselect.selectedIndex);
+		subtitlesselect.selectedIndex = '0';
+		this.el_.setAttribute('data-displaycaptions', 'false');
+		video.removeAttribute('data-stenabled');
+	}
+	var ev = document.createEvent('HTMLEvents');
+	ev.initEvent('change', true, true);
+	subtitlesselect.dispatchEvent(ev);
+};
+
+// @license-end
+/* Modification MFP */
+// Bouton d'affichage et de masquage des paramètres de sous-titres.
+
+// @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt
+
+vjs.ConfigControl = vjs.Button.extend({
+init: function (player, options) {
 		var textTrackDisplay = $$('#' + player.el_.id + ' .vjs-text-track-display').pick();
 		var VideoTracksCaptions = document.querySelectorAll('#' + player.el_.id + ' track');
 		if (VideoTracksCaptions.length > 0 && textTrackDisplay) {
@@ -3956,11 +3997,11 @@ vjs.CaptionsControl = vjs.Button.extend({
 						ofrelements[e].removeAttribute('tabindex');
 					}
 				}
-				var captionsButton = this.parentNode.parentNode.parentNode.parentNode.querySelector('.mfp-captions');
+				var configButton = this.parentNode.parentNode.parentNode.parentNode.querySelector('.mfp-config');
 				var e = document.createEvent('MouseEvent');
 				e.initEvent('click', true, true);
-				captionsButton.dispatchEvent(e);
-				captionsButton.focus();
+				configButton.dispatchEvent(e);
+				configButton.focus();
 			}, false);
 			var closeCaptionsPanelButtonImg = document.createElement('img');
 			closeCaptionsPanelButtonImg.setAttribute('alt', closeCaptionsPanelButton.getAttribute('title'));
@@ -4055,6 +4096,7 @@ vjs.CaptionsControl = vjs.Button.extend({
 					defaultcolor = colors[i];
 					colorButton.setAttribute('class', 'applied');
 					colorButton.setAttribute('title', colorButton.getAttribute('title') + ' (sélectionnée)');
+					changecss('.video-js .vjs-captions .vjs-tt-cue', 'color', '#' + defaultcolor.hexa);
 				}
 				colorButton.addEventListener('click', function(event) {
 					if (!this.hasAttribute('class')) {
@@ -4099,7 +4141,7 @@ vjs.CaptionsControl = vjs.Button.extend({
 				}
 			}, false);
 			var defaultcolorimg = document.createElement('img');
-			defaultcolorimg.setAttribute('alt', 'Afficher la liste des couleurs de sous-titres ci-après (' + defaultcolor.name + ', sélectionnée)');
+			defaultcolorimg.setAttribute('alt', 'Afficher la liste des couleurs de sous-titres (' + defaultcolor.name + ', sélectionnée)');
 			defaultcolorimg.setAttribute('height', '10');
 			defaultcolorimg.setAttribute('src', defaultcolor.dataurl);
 			defaultcolorimg.setAttribute('width', '60');
@@ -4113,7 +4155,8 @@ vjs.CaptionsControl = vjs.Button.extend({
 			captionsFieldsetCol2.appendChild(fontsColorsParent);
 			// Taille de la police.
 			var fontSizeValueMin = 1;
-			var fontSizeValueNow = 10;
+			//var fontSizeValueNow = 20;
+			var fontSizeValueNow = defaultFontsize;
 			var fontSizeValueMax = 50;
 			var fontSizeSliderParent = document.createElement('p');
 			var fontSizeInputRange = document.createElement('input');
@@ -4147,6 +4190,7 @@ vjs.CaptionsControl = vjs.Button.extend({
 				// Version personnalisée.
 			}
 			captionsFieldsetCol2.appendChild(fontSizeSliderParent);
+			changecss('.video-js .vjs-captions .vjs-tt-cue', 'font-size', (fontSizeValueNow / 10) + 'em');
 			// Ombrage.
 			var captionsFieldsetCol3 = document.createElement('div');
 			var shadowParent = document.createElement('div');
@@ -4232,7 +4276,7 @@ vjs.CaptionsControl = vjs.Button.extend({
 			captionsFieldsetCol3.appendChild(shadowParent);
 			// Opacité.
 			var opacityValueMin = 0;
-			var opacityValueNow = 20;
+			var opacityValueNow = defaultOpacity;
 			var opacityValueMax = 100;
 			var opacitySliderParent = document.createElement('p');
 			var opacityInputRange = document.createElement('input');
@@ -4311,11 +4355,11 @@ vjs.CaptionsControl = vjs.Button.extend({
 		}	
 	}
 });
-vjs.CaptionsControl.prototype.buttonText = '<img src="' + uiControls.captionsControl + '" alt="' + i18n['fr'].captionsControl.show + '" />';
-vjs.CaptionsControl.prototype.buildCSSClass = function(){
-  return 'mfp-captions';
+vjs.ConfigControl.prototype.buttonText = '<img src="' + uiControls.configControl + '" alt="' + i18n['fr'].configControl.show + '" />';
+vjs.ConfigControl.prototype.buildCSSClass = function(){
+  return 'mfp-config';
 };
-vjs.CaptionsControl.prototype.onClick = function() {
+vjs.ConfigControl.prototype.onClick = function() {
 	var captions = this.player_.el_.parentNode.querySelector('.captionssettings');
 	if (captions.getAttribute('hidden')) {
 		this.el_.firstChild.setAttribute('alt', i18n['fr'].captionsControl.hide);
@@ -4339,7 +4383,6 @@ vjs.CaptionsControl.prototype.onClick = function() {
 		captions.setAttribute('hidden', 'hidden');
 	}
 };
-
 // @license-end
 
 /* Modification MFP */

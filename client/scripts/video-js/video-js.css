@@ -53,6 +53,12 @@
 	overflow: hidden;
 }
 
+video ~ .vjs-control-bar .mfp-captions img {
+	opacity: 0.5;
+}
+video[data-stenabled] ~ .vjs-control-bar .mfp-captions img {
+	opacity: 1.0;
+}
 video ~ .vjs-control-bar .mfp-audiodescription img {
 	opacity: 0.5;
 }
@@ -63,13 +69,17 @@ video[data-adenabled] ~ .vjs-control-bar .mfp-audiodescription img {
 
 .mfp-captions {
 	position: absolute;
-	right: 249px;
+	right: 297px;
 	top: 0;
 }
-
+.mfp-config {
+	position: absolute;
+	right: 200px;
+	top: 0;
+}
 .mfp-audiodescription {
 	position: absolute;
-	right: 197px;
+	right: 249px;
 	top: 0;
 }
 

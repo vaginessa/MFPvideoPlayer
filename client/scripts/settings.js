@@ -1,5 +1,4 @@
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later
-
 // Internationalisation du lecteur.
 var i18n = {
 	'en': {
@@ -15,7 +14,11 @@ var i18n = {
 		},
 		captionsPanel: 'Captions Settings',
 		captionsControl: {
-			show: 'Show Captions Settings Panel (Above)',
+			show: 'Show Captions',
+			hide: 'Hide Captions'
+		},
+		configControl: {
+			show: 'Show Captions Settings Panel',
 			hide: 'Hide Captions Settings Panel'
 		},
 		audiodescriptionControl: {
@@ -45,7 +48,11 @@ var i18n = {
 		},
 		captionsPanel: 'Paramètres des sous-titres',
 		captionsControl: {
-			show: 'Afficher ci-après le panneau des paramètres de sous-titres',
+			show: 'Afficher les sous-titres',
+			hide: 'Masquer les sous-titres'
+		},
+		configControl: {
+			show: 'Afficher le panneau des paramètres de sous-titres',
 			hide: 'Masquer le panneau des paramètres de sous-titres'
 		},
 		audiodescriptionControl: {
@@ -70,6 +77,7 @@ var uiControls = {
 		pause: 'client/images/pause.png'
 	},
 	captionsControl: 'client/images/captions.png',
+	configControl: 'client/images/config.png',
 	audiodescriptionControl: 'client/images/audiodescription.png', 
 	muteControl: {
 		mute: 'client/images/mute.png',
@@ -80,16 +88,23 @@ var uiControls = {
 		nonfullscreen: 'client/images/nonfullscreen.png'
 	}
 };
-// Couleurs de personnalisation des sous-titres.
+/* Set Captions configuration*/
+// Default font-size
+// 10 = 1 em
+var defaultFontsize=20;
+// Default opacity
+// 10 = 0.1
+var defaultOpacity=50;
+// Default color and shadow color
 var colors = [
-	{ hexa: 'ffff00', name: 'Jaune', defaultcolor: true }, 
+	{ hexa: 'ffff00', name: 'Jaune'}, 
 	{ hexa: '008000', name: 'Vert' }, 
 	{ hexa: '0000ff', name: 'Bleu' }, 
 	{ hexa: 'ff0000', name: 'Rouge' }, 
 	{ hexa: '00ffff', name: 'Cyan' }, 
 	{ hexa: 'ff00ff', name: 'Magenta' }, 
 	{ hexa: '000000', name: 'Noir', defaultshadow: true }, 
-	{ hexa: 'ffffff', name: 'Blanc' }
+	{ hexa: 'ffffff', name: 'Blanc', defaultcolor: true }
 ];
 
 
