@@ -1,12 +1,10 @@
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later
 
-var opac_val = 0.2
+var opac_val = 0.5;
 var fontsize;
 var opac;
 function change_vid_track(tselect){
-
 	var subtitlespanel = tselect.parentNode;
-	
 	// select option :
 	var optiontranscription = null;
 	if (tselect.options[tselect.selectedIndex].hasAttribute('data-transcription')) {
@@ -70,7 +68,13 @@ function change_vid_track(tselect){
 			}
 		  }
 	}
-	
+	var captioncontrol = video.parentNode.querySelector('.mfp-captions');
+	if (tselect.selectedIndex == '0') {
+		captioncontrol.removeAttribute('data-subtitleslastindex');
+	}
+	else {
+		captioncontrol.setAttribute('data-subtitleslastindex', tselect.selectedIndex);
+	}
 }
 function set_opac_color(){
 	var captions = $$('.video-js .vjs-captions .vjs-tt-cue').pick();
