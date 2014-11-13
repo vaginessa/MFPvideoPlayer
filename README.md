@@ -92,18 +92,22 @@ Note :
 ### Enable Transcripts
 
 Insert the following html code in the video element (exemple with French transcript and captionning transcript) :
-<video>
-...
-<ul class="transcriptlist">
-	<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
-	<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
-</ul>
-...
-</video>
-----
+	<video>
+	...
+	<ul class="transcriptlist">
+		<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+		<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+	</ul>
+	...
+	</video>
+	----
 
+### Demo ###
+
+<a href="http://access42.net/MFP-lecteur-video-accessible.html">MFPvideoPlayer demo</a>
+
+<a id="french-version"></a>
 ### Intégration du lecteur
-
 
 Le code HTML du lecteur est limité à l'élément '<div>' avec un 'id' "player", ci-dessous un code "type" :
 
@@ -181,11 +185,15 @@ Note :
 
 Insérer le code suivant dans l'élément video (exemple avec une transcription en français et une transcription des sous-titres)
 
-<video>
-...
-<ul class="transcriptlist">
-	<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
-	<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
-</ul>
-...
-</video>
+	<video>
+	...
+	<ul class="transcriptlist">
+		<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+		<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+	</ul>
+	...
+	</video>
+
+### Demo ###
+
+<a href="http://access42.net/MFP-lecteur-video-accessible.html">MFPvideoPlayer demo</a>
