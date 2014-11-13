@@ -3602,9 +3602,10 @@ vjs.ControlBar.prototype.options_ = {
     //'durationDisplay': {}, /* Modification MFP */
     //'remainingTimeDisplay': {}, /* Modification MFP */
     'progressControl': {},
+	'captionsControl': {}, /* Modification MFP */
     'audiodescriptionControl': {}, /* Modification MFP */
 	'configControl': {},  /* Modification MFP */
-    'captionsControl': {}, /* Modification MFP */
+	'transcriptControl' : {}, /* Modification MFP */
     // 'fullscreenToggle': {}, /* Modification MFP */
     'muteToggle': {}, /* Modification MFP */
     'volumeControl': {},
@@ -3942,7 +3943,8 @@ vjs.CaptionsControl.prototype.buildCSSClass = function(){
 vjs.CaptionsControl.prototype.onClick = function() {
 	var video = this.player_.el_.firstChild;
 	if (!this.el_.hasAttribute('data-displaycaptions')) { 
-		this.el_.setAttribute('data-displaycaptions', 'false'); 
+		this.el_.setAttribute('data-displaycaptions', 'false');
+		this.el_.firstChild.setAttribute('alt', i18n['fr'].captionsControl.show);
 	}
 	var subtitlesselect = this.el_.parentNode.parentNode.parentNode.getElementsByTagName('select')[0];
 	if (this.el_.getAttribute('data-displaycaptions') == 'false') {
@@ -3951,12 +3953,14 @@ vjs.CaptionsControl.prototype.onClick = function() {
 		subtitlesselect.selectedIndex = '1';
 		this.el_.setAttribute('data-displaycaptions', 'true');
 		video.setAttribute('data-stenabled', 'true');
+		this.el_.firstChild.setAttribute('alt', i18n['fr'].captionsControl.hide);
 	}
 	else {
 		this.el_.setAttribute('data-subtitleslastindex', subtitlesselect.selectedIndex);
 		subtitlesselect.selectedIndex = '0';
 		this.el_.setAttribute('data-displaycaptions', 'false');
 		video.removeAttribute('data-stenabled');
+		this.el_.firstChild.setAttribute('alt', i18n['fr'].captionsControl.show);
 	}
 	var ev = document.createEvent('HTMLEvents');
 	ev.initEvent('change', true, true);
@@ -3964,6 +3968,130 @@ vjs.CaptionsControl.prototype.onClick = function() {
 };
 
 // @license-end
+
+/* Modification MFP */
+// Bouton d'affichage et de masquage du panneau de transcription
+// @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt
+
+vjs.TranscriptControl = vjs.Button.extend({
+	init: function (player, options) {
+		var videoTranscriptList = document.querySelectorAll('#' + player.el_.id + ' .transcriptlist a');
+		if(videoTranscriptList.length){
+			var transcriptDiv=document.createElement('div');
+			transcriptDiv.addClass('transcriptpan');
+			transcriptDiv.setAttribute('role','dialog');
+			transcriptDiv.setAttribute('aria-labelledby',player.el_.id + 'head_title');
+			var transcriptHead=document.createElement('p');
+			var transcriptHeadSpan=document.createElement('span');
+			transcriptHeadSpan.setAttribute('id',player.el_.id + 'head_title');
+			var transcriptHeadContent=document.createTextNode(i18n['fr'].transcriptPanel);
+			transcriptHeadSpan.appendChild(transcriptHeadContent);
+			transcriptHead.appendChild(transcriptHeadSpan);
+			// Bouton de fermeture du panneau.
+			var transcriptPanelButton = document.createElement('button');
+			transcriptPanelButton.setAttribute('type', 'button');
+			transcriptPanelButton.setAttribute('title', i18n['fr'].transcriptControl.hide);
+			transcriptPanelButton.addEventListener('click', function(event) {
+				for (var e = 0; e < ofrelements.length; e++) {
+					if (ofrelements[e].hasAttribute('data-tabindex')) {
+						ofrelements[e].setAttribute('tabindex', ofrelements[e].getAttribute('data-tabindex'));
+						ofrelements[e].removeAttribute('data-tabindex');
+					}
+					else {
+						ofrelements[e].removeAttribute('tabindex');
+					}
+				}
+				var transcriptButton = this.parentNode.parentNode.parentNode.parentNode.querySelector('.mfp-transcript');
+				var e = document.createEvent('MouseEvent');
+				e.initEvent('click', true, true);
+				transcriptButton.dispatchEvent(e);
+				transcriptButton.focus();
+			}, false);
+			var transcriptPanelButtonImg = document.createElement('img');
+			transcriptPanelButtonImg.setAttribute('alt', transcriptPanelButton.getAttribute('title'));
+			transcriptPanelButtonImg.setAttribute('height', '16');
+			transcriptPanelButtonImg.setAttribute('src', 'client/images/close.png');
+			transcriptPanelButtonImg.setAttribute('width', '16');
+			transcriptPanelButton.appendChild(transcriptPanelButtonImg);
+			// add head + button
+			transcriptHead.appendChild(transcriptPanelButton);
+			transcriptDiv.appendChild(transcriptHead);
+			var transcriptDivin=document.createElement('div');
+			transcriptDiv.appendChild(transcriptDivin);
+			// List of transcripts
+			var transcriptList=document.createElement('ul');
+			for (i=0; i<videoTranscriptList.length; i++){
+				var transcriptItem=document.createElement('li');
+				var transcriptLink=document.createElement('a');
+				transcriptLinkContent=document.createTextNode(videoTranscriptList[i].firstChild.nodeValue);
+				transcriptLink.appendChild(transcriptLinkContent);
+				transcriptLink.setAttribute('href',videoTranscriptList[i].getAttribute('href'));
+				transcriptLink.setAttribute('target','_blank');
+				transcriptLink.setAttribute('title',videoTranscriptList[i].getAttribute('title'));
+				transcriptItem.appendChild(transcriptLink);
+				transcriptList.appendChild(transcriptItem);
+			}
+			transcriptDivin.appendChild(transcriptList);
+			transcriptDiv.appendChild(transcriptDivin);
+			transcriptDiv.setAttribute('hidden', 'hidden');
+			transcriptDiv.setAttribute('class', 'transcriptpan');
+			transcriptDiv.setAttribute('tabindex', '0');
+			var playerel = player.player_.el_.parentNode;
+			playerel.appendChild(transcriptDiv);
+			vjs.Button.call(this, player, options);
+		}
+	}
+});
+vjs.TranscriptControl.prototype.buttonText = '<img src="' + uiControls.transcriptControl + '" alt="' + i18n['fr'].transcriptControl.show + '" />';
+vjs.TranscriptControl.prototype.buildCSSClass = function(){
+  return 'mfp-transcript';
+};
+vjs.TranscriptControl.prototype.onClick = function() {
+	var transcript = this.player_.el_.parentNode.querySelector('.transcriptpan');
+	if (transcript.getAttribute('hidden')) {
+		this.el_.firstChild.setAttribute('alt', i18n['fr'].transcriptControl.hide);
+		var elements = document.querySelectorAll('a, area, button, input, select, textaea, *[tabindex]');
+		for (var e = 0; e < elements.length; e++) {
+			if (!(elements[e].getAttribute('class') == 'transcriptpan') && !elements[e].getParent('.transcriptpan')) {
+				if (elements[e].getAttribute('tabindex') != '-1') {
+					if (elements[e].hasAttribute('tabindex')) {
+						elements[e].setAttribute('data-tabindex', elements[e].getAttribute('tabindex'));
+					}
+					elements[e].setAttribute('tabindex', '-1');
+					ofrelements.push(elements[e]);
+				}	
+			}
+		}
+		transcript.removeAttribute('hidden');
+		transcript.focus();
+		//escape close the panel
+		var transcriptControlImg=this.el_.firstChild;
+		transcript.addEventListener('keydown', function(event) {
+			if (event.keyCode == 27) {
+					transcriptControlImg.setAttribute('alt', i18n['fr'].transcriptControl.show);
+					transcript.setAttribute('hidden', 'hidden');
+					for (var e = 0; e < ofrelements.length; e++) {
+						if (ofrelements[e].hasAttribute('data-tabindex')) {
+							ofrelements[e].setAttribute('tabindex', ofrelements[e].getAttribute('data-tabindex'));
+							ofrelements[e].removeAttribute('data-tabindex');
+						}
+						else {
+							ofrelements[e].removeAttribute('tabindex');
+						}
+					}
+					transcriptControlImg.parentNode.focus();
+					event.preventDefault();
+			}
+		}, false);
+	}
+	else {
+		this.el_.firstChild.setAttribute('alt', i18n['fr'].transcriptControl.show);
+		transcript.setAttribute('hidden', 'hidden');
+	}
+};
+
+// @license-end
+
 /* Modification MFP */
 // Bouton d'affichage et de masquage des paramètres de sous-titres.
 
@@ -3986,7 +4114,7 @@ init: function (player, options) {
 			var closeCaptionsPanel = document.createElement('p');
 			var closeCaptionsPanelButton = document.createElement('button');
 			closeCaptionsPanelButton.setAttribute('type', 'button');
-			closeCaptionsPanelButton.setAttribute('title', i18n['fr'].captionsControl.hide);
+			closeCaptionsPanelButton.setAttribute('title', i18n['fr'].configControl.hide);
 			closeCaptionsPanelButton.addEventListener('click', function(event) {
 				for (var e = 0; e < ofrelements.length; e++) {
 					if (ofrelements[e].hasAttribute('data-tabindex')) {
@@ -4029,10 +4157,11 @@ init: function (player, options) {
 			tracksSelect.appendChild(noTrack);
 			for (var i = 0; i < VideoTracksCaptions.length; i++) {
 				var trackOption = document.createElement('option');
-				if (VideoTracksCaptions[i].hasAttribute('data-transcription')) {
+				//Removed : setting a list for captions transcript (txt) transfered in trancript panel.
+				/*if (VideoTracksCaptions[i].hasAttribute('data-transcription')) {
 					trackOption.setAttribute('data-transcription', VideoTracksCaptions[i].getAttribute('data-transcription'));
 					VideoTracksCaptions[i].removeAttribute('data-transcription');
-				}
+				}*/
 				// Voir si le srclang s'applique à la rédaction du label.
 				// trackOption.setAttribute('lang', VideoTracksCaptions[i].getAttribute('srclang'));
 				trackOption.setAttribute('value', i);
@@ -4258,12 +4387,12 @@ init: function (player, options) {
 					colors.removeAttribute('hidden');
 				}
 				else {
-					thisimg.setAttribute('alt', 'Afficher la liste des couleurs de fond des sous-titres ci-après ' + suffixalt);
+					thisimg.setAttribute('alt', 'Afficher la liste des couleurs de fond des sous-titres ' + suffixalt);
 					colors.setAttribute('hidden', 'hidden');
 				}
 			}, false);
 			var defaultshadowimg = document.createElement('img');
-			defaultshadowimg.setAttribute('alt', 'Afficher la liste des couleurs de fond des sous-titres ci-après (' + defaultshadow.name + ', sélectionnée)');
+			defaultshadowimg.setAttribute('alt', 'Afficher la liste des couleurs de fond des sous-titres (' + defaultshadow.name + ', sélectionnée)');
 			defaultshadowimg.setAttribute('height', '10');
 			defaultshadowimg.setAttribute('src', defaultshadow.dataurl);
 			defaultshadowimg.setAttribute('width', '60');
@@ -4362,7 +4491,7 @@ vjs.ConfigControl.prototype.buildCSSClass = function(){
 vjs.ConfigControl.prototype.onClick = function() {
 	var captions = this.player_.el_.parentNode.querySelector('.captionssettings');
 	if (captions.getAttribute('hidden')) {
-		this.el_.firstChild.setAttribute('alt', i18n['fr'].captionsControl.hide);
+		this.el_.firstChild.setAttribute('alt', i18n['fr'].configControl.hide);
 		var elements = document.querySelectorAll('a, area, button, input, select, textaea, *[tabindex]');
 		for (var e = 0; e < elements.length; e++) {
 			if (!(elements[e].getAttribute('class') == 'captionssettings') && !elements[e].getParent('.captionssettings')) {
@@ -4377,9 +4506,28 @@ vjs.ConfigControl.prototype.onClick = function() {
 		}
 		captions.removeAttribute('hidden');
 		captions.focus();
+		//Escape close the panel
+		var captionControlImg=this.el_.firstChild;
+		captions.addEventListener('keydown', function(event) {
+			if (event.keyCode == 27) {
+					captionControlImg.setAttribute('alt', i18n['fr'].configControl.show);
+					captions.setAttribute('hidden', 'hidden');
+					for (var e = 0; e < ofrelements.length; e++) {
+						if (ofrelements[e].hasAttribute('data-tabindex')) {
+							ofrelements[e].setAttribute('tabindex', ofrelements[e].getAttribute('data-tabindex'));
+							ofrelements[e].removeAttribute('data-tabindex');
+						}
+						else {
+							ofrelements[e].removeAttribute('tabindex');
+						}
+					}
+					captionControlImg.parentNode.focus();
+					event.preventDefault();
+			}
+		}, false);
 	}
 	else {
-		this.el_.firstChild.setAttribute('alt', i18n['fr'].captionsControl.show);
+		this.el_.firstChild.setAttribute('alt', i18n['fr'].configControl.show);
 		captions.setAttribute('hidden', 'hidden');
 	}
 };

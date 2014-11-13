@@ -16,7 +16,7 @@ How to use the MFP Accessible Video Player ([French version bellow](#french-vers
 ### How to embed the player
 
 
-The HTML code of the player just use the `<div>` element with an `id` "player", below a sample:
+The HTML code of the player just use the '<div>' element with an 'id' "player", below a sample:
 
 	<div id="player">
 		<video id="video" controls="controls" height="480" width="640">
@@ -31,7 +31,7 @@ The HTML code of the player just use the `<div>` element with an `id` "player", 
 
 Copy-paste this code where you want the player to be displayed on the page. 
 
-Then, in the `head` element (between the tags `<head>` and `</head>`) of the document, you have to call external resources:
+Then, in the 'head' element (between the tags '<head>' and '</head>') of the document, you have to call external resources:
 
 	<!-- VideoJS -->
 	<link rel="stylesheet" href="client/scripts/video-js/video-js.css" type="text/css" />
@@ -56,51 +56,56 @@ Then, in the `head` element (between the tags `<head>` and `</head>`) of the doc
 		}, false);
 	</script>
 
-Note: you may have to change the path of the resources (`src` in `script` elements and `href` of the `link` elements) according to their actual location.
+Note: you may have to change the path of the resources ('src' in 'script' elements and 'href' of the 'link' elements) according to their actual location.
 
 
 ### Enable Closed Caption
 
-In the `video` element (betweeen the tags `<video>` and `</video>`), in each closed captioning file you must add the following line of code:
+In the 'video' element (betweeen the tags '<video>' and '</video>'), in each closed captioning file you must add the following line of code:
 
 	<track kind="captions" label="" src="" srclang="" data-transcription="" />
 
 And complete the code following the rules described bellow:
-- `label` allows you to give a title to the closed captioning file: this title will appear in the dropdowmn list of the closed caption panel;
-- `src` allow you to indicate where the closed captioning file is located;
-- `srclang` allows you to indicate the lang of the closed caption or subtitles;
-- `data-transcription` allows you to indicate where the transcript file is located (to be downloaded), if there is one.
+- 'label' allows you to give a title to the closed captioning file: this title will appear in the dropdowmn list of the closed caption panel;
+- 'src' allow you to indicate where the closed captioning file is located;
+- 'srclang' allows you to indicate the lang of the closed caption or subtitles;
 
-Example for a closed captioning file in French intitled "Français", with a transcript file to be download:
+Example for a closed captioning file in French intitled "Français" :
 	
-	<track kind="captions" label="Français" src="client/captions/fr.srt"
-		 srclang="fr" data-transcription="server/transcriptions/fr.txt" />
+	<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" />
 
 Notes:
-- if there isn't any closed captions, you musn't add any line `<track ... />` : the button ST will not be present;
-- if there isn't any transcript file (to be downloaded), `data-transcription` musn't be used: the link "Download the transcript" will not appear.
-
+- if there isn't any closed captions, you musn't add any line '<track ... />' : the button ST will not be present;
 
 ### Enable Audio Description
 
-Just after the `video` element (tag `</video>`), add the following line of code:
+Just after the 'video' element (tag '</video>'), add the following line of code:
 
 	<audio src="" preload="auto" hidden="hidden"></audio>
 
 And complete the code following the rule bellow:
-- `src` allows you to indicate where the Audio Description file is located.
+- 'src' allows you to indicate where the Audio Description file is located.
 
 Note :
 - if there isn't any Audio Description, do not add this line of code: the AD button will not appear.
 
+### Enable Transcripts
 
-<a name="french-version"></a>Comment utiliser le lecteur vidéo accessible MFP
+Insert the following html code in the video element (exemple with French transcript and captionning transcript) :
+<video>
+...
+<ul class="transcriptlist">
+	<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+	<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+</ul>
+...
+</video>
 ----
 
 ### Intégration du lecteur
 
 
-Le code HTML du lecteur est limité à l'élément `<div>` avec un `id` "player", ci-dessous un code "type" :
+Le code HTML du lecteur est limité à l'élément '<div>' avec un 'id' "player", ci-dessous un code "type" :
 
 	<div id="player">
 		<video id="video" controls="controls" height="480" width="640">
@@ -114,7 +119,7 @@ Le code HTML du lecteur est limité à l'élément `<div>` avec un `id` "player"
 
 Placez ce code à l'endroit souhaité dans la page où le lecteur doit être intégré.
 
-Enfin, dans l'élément `head` (entre les balises `<head>` et `</head>`) de la page, un appel à des ressources externes est requis :
+Enfin, dans l'élément 'head' (entre les balises '<head>' et '</head>') de la page, un appel à des ressources externes est requis :
 
 	<!-- VideoJS -->
 	<link rel="stylesheet" href="client/scripts/video-js/video-js.css" type="text/css" />
@@ -139,39 +144,48 @@ Enfin, dans l'élément `head` (entre les balises `<head>` et `</head>`) de la p
 		}, false);
 	</script>
 
-Note : selon l'emplacement de ces ressources externes, les chemins (`src` des éléments `script` et `href` des éléments `link`) peuvent être changés. 
-
+Note : selon l'emplacement de ces ressources externes, les chemins ('src' des éléments 'script' et 'href' des éléments 'link') peuvent être changés. 
 
 ### Mise en place des sous-titres
 
-Dans l'élément `video` (entre les balises `<video>` et `</video>`), ajoutez pour chaque fichier de sous-titres la ligne de code suivante :
+Dans l'élément 'video' (entre les balises '<video>' et '</video>'), ajoutez pour chaque fichier de sous-titres la ligne de code suivante :
 
 	<track kind="captions" label="" src="" srclang="" data-transcription="" />
 
 Et complétez le code en suivant les règles suivantes :
-- `label` permet de donner un intitulé au fichier de sous-titres : cet intitulé sera repris dans la liste déroulante du panneau des sous-titres ;
-- `src` permet d'indiquer où se trouve le fichier de sous-titres ;
-- `srclang` permet d'indiquer la langue des sous-titres ;
-- `data-transcription` permet d'indiquer où se trouve un éventuel fichier de transcript (à télécharger).
+- 'label' permet de donner un intitulé au fichier de sous-titres : cet intitulé sera repris dans la liste déroulante du panneau des sous-titres ;
+- 'src' permet d'indiquer où se trouve le fichier de sous-titres ;
+- 'srclang' permet d'indiquer la langue des sous-titres ;
 
-Exemple pour un fichier de sous-titres en français intitulé "Français" accompagné d'un transcript :
+Exemple pour un fichier de sous-titres en français intitulé "Français" :
 	
 	<track kind="captions" label="Français" src="client/captions/fr.srt"
-		 srclang="fr" data-transcription="server/transcriptions/fr.txt" />
+		 srclang="fr" />
 
 Notes :
-- en l'absence de sous-titres, aucune ligne `<track ... />` ne doit être ajoutée : le bouton ST sera alors absent.
-- en l'absence de transcript (à télécharger), `data-transcription` ne doit pas être renseigné : le lien "Télécharger le transcript" ne sera alors pas proposé.
-
+- en l'absence de sous-titres, aucune ligne '<track ... />' ne doit être ajoutée : le bouton ST sera alors absent.
 
 ### Mise en place de l'audiodescription
 
-Directement après l'élément `video` (balise `</video>`), ajoutez la ligne de code suivante :
+Directement après l'élément 'video' (balise '</video>'), ajoutez la ligne de code suivante :
 
 	<audio src="" preload="auto" hidden="hidden"></audio>
 
 Et complétez le code en suivant la règle suivante :
-- `src` permet d'indiquer où se trouve le fichier de l'audiodescription.
+- 'src' permet d'indiquer où se trouve le fichier de l'audiodescription.
 
 Note :
 - en l'absence d'audiodescription, n'ajoutez pas cette ligne de code : le bouton AD sera alors absent.
+
+### Mise en place des transcriptions
+
+Insérer le code suivant dans l'élément video (exemple avec une transcription en français et une transcription des sous-titres)
+
+<video>
+...
+<ul class="transcriptlist">
+	<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+	<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+</ul>
+...
+</video>

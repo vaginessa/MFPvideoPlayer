@@ -21,6 +21,11 @@ var i18n = {
 			show: 'Show Captions Settings Panel',
 			hide: 'Hide Captions Settings Panel'
 		},
+		transcriptPanel: 'Transcripts',
+		transcriptControl :{
+			show: 'Select a transcript',
+			hide: 'Hide the transcript pannel'
+		},
 		audiodescriptionControl: {
 			off: 'Audiodescription Off',
 			on: 'Audiodescription On'
@@ -55,6 +60,11 @@ var i18n = {
 			show: 'Afficher le panneau des paramètres de sous-titres',
 			hide: 'Masquer le panneau des paramètres de sous-titres'
 		},
+		transcriptPanel : 'Transcriptions',
+		transcriptControl :{
+			show: 'Sélectionner une transcription',
+			hide: 'Masquer le panneau de transcription'
+		},
 		audiodescriptionControl: {
 			off: "Désactiver l'audiodescription",
 			on: "Activer l'audiodescription"
@@ -65,7 +75,7 @@ var i18n = {
 		},
 		volumeLevel: 'Volume sonore',
 		fullscreenControl: {
-			fullscreen: 'Activer le mode plain écran',
+			fullscreen: 'Activer le mode plein écran',
 			nonfullscreen: 'Désactiver le mode plein écran'
 		}
 	}
@@ -78,7 +88,8 @@ var uiControls = {
 	},
 	captionsControl: 'client/images/captions.png',
 	configControl: 'client/images/config.png',
-	audiodescriptionControl: 'client/images/audiodescription.png', 
+	audiodescriptionControl: 'client/images/audiodescription.png',
+	transcriptControl: 'client/images/transcript.png',
 	muteControl: {
 		mute: 'client/images/mute.png',
 		unmute: 'client/images/unmute.png'
