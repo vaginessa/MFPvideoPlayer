@@ -102,8 +102,12 @@ Insert the following html code in the video element (exemple with French transcr
 	</video>
 	----
 
-### Intégration du lecteur
+### Demo ###
 
+<a href="http://access42.net/MFP-lecteur-video-accessible.html">MFPvideoPlayer demo</a>
+
+<a id="french-version"></a>
+### Intégration du lecteur
 
 Le code HTML du lecteur est limité à l'élément '<div>' avec un 'id' "player", ci-dessous un code "type" :
 
@@ -189,3 +193,7 @@ Insérer le code suivant dans l'élément video (exemple avec une transcription 
 	</ul>
 	...
 	</video>
+
+### Demo ###
+
+<a href="http://access42.net/MFP-lecteur-video-accessible.html">MFPvideoPlayer demo</a>
