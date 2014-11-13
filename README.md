@@ -92,6 +92,7 @@ Note :
 ### Enable Transcripts
 
 Insert the following html code in the video element (exemple with French transcript and captionning transcript) :
+
 	<video>
 	...
 	<ul class="transcriptlist">
