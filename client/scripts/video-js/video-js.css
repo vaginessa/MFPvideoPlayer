@@ -5,22 +5,34 @@
 }
 
 /* Modification MFP */
-.captionssettings {
+.captionssettings,
+.transcriptpan {
 	/*border: solid 1px #fff;
 	height: 270px;
 	left: 50%;
 	margin-left: -321px;
 	margin-top: -136px;
-	position: fixed;*/ bottom: 74px; position: absolute; right: 0;
+	position: fixed;*/ 
 	/*top: 50%;
 	width: 640px;*/
+	bottom: 74px; 
+	position: absolute; 
+	right: 0;
 	z-index: 2147483647 !important; /* Firefox applique un zindex empêchant l'affichage superposé */
 }
-
+.transcriptpan div{
+	margin-top:0;
+	background-color:#000;
+	opacity:0.6;
+	padding:0 3px 3px 3px;
+}
 .vjs-fullscreen ~ .captionssettings {
 	position: fixed; bottom: 114px;
 }
-
+/*panneau transcript */
+.vjs-fullscreen ~ .transcriptpan {
+	position: fixed; bottom: 114px;
+}
 .vjs-control-bar button {
 	background-color: transparent;
 	border: none;
@@ -31,7 +43,11 @@
 .vjs-control-bar button:focus {
 	outline-color: yellow;
 }
-
+.vjs-control-bar button:hover,
+.captionsetting button:hover,
+.transcriptpan button:hover {
+	cursor:pointer
+}
 .vjs-control-bar button img {
 	vertical-align: bottom;
 }
@@ -66,20 +82,24 @@ video ~ .vjs-control-bar .mfp-audiodescription img {
 video[data-adenabled] ~ .vjs-control-bar .mfp-audiodescription img {
 	opacity: 1.0;
 }
-
 .mfp-captions {
 	position: absolute;
-	right: 297px;
+	right: 329px;
 	top: 0;
 }
-.mfp-config {
+.mfp-transcript{
 	position: absolute;
 	right: 200px;
 	top: 0;
 }
+.mfp-config {
+	position: absolute;
+	right: 237px;
+	top: 0;
+}
 .mfp-audiodescription {
 	position: absolute;
-	right: 249px;
+	right: 281px;
 	top: 0;
 }
 
@@ -874,6 +894,7 @@ body.vjs-full-window {
 }
 .vjs-tt-cue {
   display: block;
+  line-height:1.3em;
 }
 /* Hide disabled or unsupported controls */
 .vjs-default-skin .vjs-hidden {

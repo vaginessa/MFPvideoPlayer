@@ -112,7 +112,8 @@ button[data-hexa] img {
 	text-align: left;
 }
 
-.captionssettings *:focus {
+.captionssettings *:focus,
+.transcriptpan *:focus {
 	outline: solid 1px yellow;
 }
 
@@ -144,17 +145,24 @@ button[data-hexa] img {
 	top: 3px;
 }
 
-.captionssettings fieldset legend + p button {
+.captionssettings fieldset legend + p button,
+.transcriptpan button {
 	background: none;
 	border: none;
 	padding: 0;
 }
-
-.captionssettings fieldset legend + p button img {
+.transcriptpan button{
+	position:absolute;
+	right:3px;
+	top:3px;
+}
+.captionssettings fieldset legend + p button img,
+.transcriptpan button img {
 	vertical-align: bottom;
 }
 
-.captionssettings fieldset legend span {
+.captionssettings fieldset legend span,
+.transcriptpan p span {
 	background-color: rgba(0, 0, 0, 0.9);
 	color: #fff;
 	display: block;
@@ -163,7 +171,8 @@ button[data-hexa] img {
 	padding: 5px 29px 5px 10px;
 }
 
-.captionssettings fieldset label, .captionssettings fieldset span.label {
+.captionssettings fieldset label, 
+.captionssettings fieldset span.label {
 	display: block;
 	font-size: 0.95em;
 	padding-bottom: 10px;
@@ -193,7 +202,8 @@ button[data-hexa] img {
 	padding: 5px 10px;
 }
 
-.captionssettings fieldset > div > div p, .captionssettings fieldset > div div.colors {
+.captionssettings fieldset > div > div p, 
+.captionssettings fieldset > div div.colors {
 	margin: 0;
 	padding: 5px 0;
 }
@@ -215,6 +225,26 @@ button[data-hexa] img {
 	/*padding-left: 20px;*/
 }
 
+.transcriptpan{
+	/*border-top: solid 1px #fff;*/
+	color: #fff;
+	font-size: 0.75em;
+	/*padding: 20px 0;*/
+	text-align: left;
+}
+.transcriptpan p{
+	position:relative;
+	text-align:center;
+	margin-bottom:0;
+}
+.transcriptpan ul{
+	margin:0;
+	padding:0 0 0 10px;
+}
+.transcriptpan ul li a:hover,
+.transcriptpan ul li a:focus{
+	color:yellow;
+}
 .vjs-default-skin .vjs-control-bar {
 	padding-top: 1px; /* Améliore la visibilité du outline */
 }

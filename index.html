@@ -28,14 +28,20 @@
 	</head>
 	<body>
 		<h1>Intégration du player HTML5 (avec sous-titres et audiodescription)</h1>
-		<div id="player">
-			<video id="video" controls="controls" height="480" width="640">
-				<source src="client/medias/Jamy_GH_VC.mp4" type="video/mp4" />
-				<source src="client/medias/Jamy_GH_VC.webm" type="video/webm" />
-				<source src="client/medias/Jamy_GH_VC.ogv" type="video/ogg" />
-				<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" data-transcription="server/transcriptions/fr.txt" />
-			</video>
-			<audio src="client/medias/Jamy_GH_VC.mp3" preload="auto" hidden="hidden"></audio>
-		</div>
+				<div id="player">
+					<video id="video" controls="controls" height="480" width="640">
+						<source src="client/medias/Jamy_GH_VC.mp4" type="video/mp4" />
+						<source src="client/medias/Jamy_GH_VC.webm" type="video/webm" />
+						<source src="client/medias/Jamy_GH_VC.ogv" type="video/ogg" />
+						<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" />
+					<ul class="transcriptlist">
+						<li><a href="" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+						<li><a href="" target="_blank" title="Transcription française - PDF 42 Ko - nouvelle fenêtre">Transcription française - PDF 42 Ko</a></li>
+						<li><a href="" target="_blank" title="Transcription française - ODT 42 Ko - nouvelle fenêtre">Transcription française - ODT 42 Ko</a></li>
+						<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+					</ul>
+					</video>
+					<audio src="client/medias/Jamy_GH_VC.mp3" preload="auto" hidden="hidden"></audio>
+				</div>
 	</body>
 </html>
