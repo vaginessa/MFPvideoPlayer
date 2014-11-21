@@ -213,9 +213,10 @@ The default control bar that is a container for most of the controls.
 /* Show the control bar only once the video has started playing */
 .vjs-default-skin.vjs-has-started .vjs-control-bar {
   display: block;
-  /* Visibility needed to make sure things hide in older browsers too. */
+  /* Visibility needed to make sure things hide in older browsers too. 
+     Visibility causes a loss of focus for keyboard user */
 
-  visibility: visible;
+  /*visibility: visible;*/
   opacity: 1;
   /* transition */
   -webkit-transition: visibility 0.1s, opacity 0.1s;
@@ -223,10 +224,11 @@ The default control bar that is a container for most of the controls.
   -o-transition: visibility 0.1s, opacity 0.1s;
   transition: visibility 0.1s, opacity 0.1s;
 }
-/* Hide the control bar when the video is playing and the user is inactive  */
+/* Hide the control bar when the video is playing and the user is inactive  
+   Visibility causes a loss of focus for keyboard user */
 .vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
   display: block;
-  visibility: hidden;
+  /*visibility: hidden;*/
   opacity: 0;
   /* transition */
   -webkit-transition: visibility 1s, opacity 1s;
