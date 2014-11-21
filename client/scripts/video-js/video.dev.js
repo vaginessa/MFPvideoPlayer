@@ -2614,7 +2614,7 @@ vjs.Player.prototype.createEl = function(){
 
   // Remove width/height attrs from tag so CSS can make it 100% width/height
   /*
-  	Modification par Romain Gervois.
+  	Modification par MFP.
   */
   
   document.getElementById('player').style.width = tag.getAttribute('width') + 'px';
