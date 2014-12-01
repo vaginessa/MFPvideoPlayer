@@ -9,9 +9,6 @@
 		<link rel="stylesheet" href="client/styles/styles.css" type="text/css" />
 		<!-- Internationalisation, images de l'interface et couleurs (paramètres des sous-titres) -->
 		<script src="client/scripts/settings.js" type="text/javascript"></script>
-		<!-- Framework Mootools -->
-		<script src="client/scripts/mootools-core-1.4.5-full-nocompat-yc.js" type="text/javascript"></script>
-		<script src="client/scripts/mootools-more-1.4.0.1.js" type="text/javascript"></script>
 		<!-- VideoJS (remaniée : audiodescription et panneau des paramètres des sous-titres + mise en accessibilité) -->
 		<script src="client/scripts/video-js/video.dev.js" type="text/javascript"></script>
 		<!-- Fonctions liées aux paramètres des sous-titres -->
@@ -30,18 +27,16 @@
 		<h1>Intégration du player HTML5 (avec sous-titres et audiodescription)</h1>
 				<div id="player">
 					<video id="video" controls="controls" height="480" width="640">
-						<source src="client/medias/Jamy_GH_VC.mp4" type="video/mp4" />
-						<source src="client/medias/Jamy_GH_VC.webm" type="video/webm" />
-						<source src="client/medias/Jamy_GH_VC.ogv" type="video/ogg" />
+						<source src="client/medias/videosample.mp4" type="video/mp4" />
+						<source src="client/medias/videosample.webm" type="video/webm" />
+						<source src="client/medias/videosample.ogv" type="video/ogg" />
 						<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" />
 					<ul class="transcriptlist">
-						<li><a href="" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
-						<li><a href="" target="_blank" title="Transcription française - PDF 42 Ko - nouvelle fenêtre">Transcription française - PDF 42 Ko</a></li>
-						<li><a href="" target="_blank" title="Transcription française - ODT 42 Ko - nouvelle fenêtre">Transcription française - ODT 42 Ko</a></li>
-						<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+						<li><a href="" title="transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+						<li><a href="" title="transcription française - ODT 42 Ko - nouvelle fenêtre">Transcription française - ODT 42 Ko</a></li>
 					</ul>
 					</video>
-					<audio src="client/medias/Jamy_GH_VC.mp3" preload="auto" hidden="hidden"></audio>
+					<audio src="client/medias/videosample.mp3" preload="auto" hidden="hidden"></audio>
 				</div>
 	</body>
 </html>
