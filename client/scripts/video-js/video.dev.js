@@ -4010,7 +4010,7 @@ vjs.TranscriptControl = vjs.Button.extend({
 			var transcriptPanelButtonImg = document.createElement('img');
 			transcriptPanelButtonImg.setAttribute('alt', transcriptPanelButton.getAttribute('title'));
 			transcriptPanelButtonImg.setAttribute('height', '16');
-			transcriptPanelButtonImg.setAttribute('src', 'client/images/close.png');
+			transcriptPanelButtonImg.setAttribute('src',uiControls.closeControl);
 			transcriptPanelButtonImg.setAttribute('width', '16');
 			transcriptPanelButton.appendChild(transcriptPanelButtonImg);
 			// add head + button
@@ -4120,7 +4120,7 @@ init: function (player, options) {
 			var closeCaptionsPanelButtonImg = document.createElement('img');
 			closeCaptionsPanelButtonImg.setAttribute('alt', closeCaptionsPanelButton.getAttribute('title'));
 			closeCaptionsPanelButtonImg.setAttribute('height', '16');
-			closeCaptionsPanelButtonImg.setAttribute('src', 'client/images/close.png');
+			closeCaptionsPanelButtonImg.setAttribute('src',uiControls.closeControl);
 			closeCaptionsPanelButtonImg.setAttribute('width', '16');
 			closeCaptionsPanelButton.appendChild(closeCaptionsPanelButtonImg);
 			closeCaptionsPanel.appendChild(closeCaptionsPanelButton);

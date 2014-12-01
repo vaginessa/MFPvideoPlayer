@@ -1,5 +1,5 @@
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later
-// Internationalisation du lecteur.
+// Internationalization
 var i18n = {
 	'en': {
 		playControl: {
@@ -80,7 +80,10 @@ var i18n = {
 		}
 	}
 };
-// Images de l'interface du lecteur.
+/*
+Controls images
+complete with your server paths
+*/
 var uiControls = {
 	playControl: {
 		play: 'client/images/play.png',
@@ -97,7 +100,8 @@ var uiControls = {
 	fullscreenControl: {
 		fullscreen: 'client/images/fullscreen.png',
 		nonfullscreen: 'client/images/nonfullscreen.png'
-	}
+	},
+	closeControl: 'client/images/close.png'
 };
 /* Set Captions configuration*/
 // Default font-size
