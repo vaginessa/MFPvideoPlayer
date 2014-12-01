@@ -3978,7 +3978,7 @@ vjs.TranscriptControl = vjs.Button.extend({
 		var videoTranscriptList = document.querySelectorAll('#' + player.el_.id + ' .transcriptlist a');
 		if(videoTranscriptList.length){
 			var transcriptDiv=document.createElement('div');
-			transcriptDiv.addClass('transcriptpan');
+			transcriptDiv.className='transcriptpan';
 			transcriptDiv.setAttribute('role','dialog');
 			transcriptDiv.setAttribute('aria-labelledby',player.el_.id + 'head_title');
 			var transcriptHead=document.createElement('p');
@@ -4050,18 +4050,6 @@ vjs.TranscriptControl.prototype.onClick = function() {
 	var transcript = this.player_.el_.parentNode.querySelector('.transcriptpan');
 	if (transcript.getAttribute('hidden')) {
 		this.el_.firstChild.setAttribute('alt', i18n['fr'].transcriptControl.hide);
-		var elements = document.querySelectorAll('a, area, button, input, select, textaea, *[tabindex]');
-		for (var e = 0; e < elements.length; e++) {
-			if (!(elements[e].getAttribute('class') == 'transcriptpan') && !elements[e].getParent('.transcriptpan')) {
-				if (elements[e].getAttribute('tabindex') != '-1') {
-					if (elements[e].hasAttribute('tabindex')) {
-						elements[e].setAttribute('data-tabindex', elements[e].getAttribute('tabindex'));
-					}
-					elements[e].setAttribute('tabindex', '-1');
-					ofrelements.push(elements[e]);
-				}	
-			}
-		}
 		transcript.removeAttribute('hidden');
 		transcript.focus();
 		//escape close the panel
@@ -4070,19 +4058,17 @@ vjs.TranscriptControl.prototype.onClick = function() {
 			if (event.keyCode == 27) {
 					transcriptControlImg.setAttribute('alt', i18n['fr'].transcriptControl.show);
 					transcript.setAttribute('hidden', 'hidden');
-					for (var e = 0; e < ofrelements.length; e++) {
-						if (ofrelements[e].hasAttribute('data-tabindex')) {
-							ofrelements[e].setAttribute('tabindex', ofrelements[e].getAttribute('data-tabindex'));
-							ofrelements[e].removeAttribute('data-tabindex');
-						}
-						else {
-							ofrelements[e].removeAttribute('tabindex');
-						}
-					}
 					transcriptControlImg.parentNode.focus();
 					event.preventDefault();
 			}
 		}, false);
+		// Trapping focus
+		document.addEventListener('focus', function(event) {
+			if (!transcript.getAttribute('hidden') && !transcript.contains(event.target)) {
+				event.stopPropagation();
+				transcript.focus();
+			}
+		}, true);
 	}
 	else {
 		this.el_.firstChild.setAttribute('alt', i18n['fr'].transcriptControl.show);
@@ -4099,7 +4085,7 @@ vjs.TranscriptControl.prototype.onClick = function() {
 
 vjs.ConfigControl = vjs.Button.extend({
 init: function (player, options) {
-		var textTrackDisplay = $$('#' + player.el_.id + ' .vjs-text-track-display').pick();
+		var textTrackDisplay = document.querySelector('#' + player.el_.id + ' .vjs-text-track-display');
 		var VideoTracksCaptions = document.querySelectorAll('#' + player.el_.id + ' track');
 		if (VideoTracksCaptions.length > 0 && textTrackDisplay) {
 			var captionsDocumentFragment = document.createDocumentFragment();
@@ -4110,7 +4096,7 @@ init: function (player, options) {
 			captionsLegendSpan.appendChild(document.createTextNode(i18n['fr'].captionsPanel));
 			captionsLegend.appendChild(captionsLegendSpan);
 			captionsFieldset.appendChild(captionsLegend);
-			// Bouton de fermeture du panneau.
+			// Close button
 			var closeCaptionsPanel = document.createElement('p');
 			var closeCaptionsPanelButton = document.createElement('button');
 			closeCaptionsPanelButton.setAttribute('type', 'button');
@@ -4139,7 +4125,7 @@ init: function (player, options) {
 			closeCaptionsPanelButton.appendChild(closeCaptionsPanelButtonImg);
 			closeCaptionsPanel.appendChild(closeCaptionsPanelButton);
 			captionsFieldset.appendChild(closeCaptionsPanel);
-			// Langue des sous-titres.
+			// Captions lang
 			var tracksParent = document.createElement('p');
 			var tracksLabel = document.createElement('label');
 			tracksLabel.setAttribute('for', 'sub_titles_select');
@@ -4157,13 +4143,6 @@ init: function (player, options) {
 			tracksSelect.appendChild(noTrack);
 			for (var i = 0; i < VideoTracksCaptions.length; i++) {
 				var trackOption = document.createElement('option');
-				//Removed : setting a list for captions transcript (txt) transfered in trancript panel.
-				/*if (VideoTracksCaptions[i].hasAttribute('data-transcription')) {
-					trackOption.setAttribute('data-transcription', VideoTracksCaptions[i].getAttribute('data-transcription'));
-					VideoTracksCaptions[i].removeAttribute('data-transcription');
-				}*/
-				// Voir si le srclang s'applique à la rédaction du label.
-				// trackOption.setAttribute('lang', VideoTracksCaptions[i].getAttribute('srclang'));
 				trackOption.setAttribute('value', i);
 				trackOption.appendChild(document.createTextNode(VideoTracksCaptions[i].getAttribute('label')));
 				tracksSelect.appendChild(trackOption);
@@ -4171,7 +4150,7 @@ init: function (player, options) {
 			tracksParent.appendChild(tracksSelect);
 			var captionsFieldsetCol1 = document.createElement('div');
 			captionsFieldsetCol1.appendChild(tracksParent);
-			// Police des sous-titres.
+			// Captions fonts.
 			var captionsFieldsetCol2 = document.createElement('div');
 			var fontsList = ['Arial', 'Times', 'Courier'];
 			var fontsParent = document.createElement('p');
@@ -4192,7 +4171,7 @@ init: function (player, options) {
 				fontsSelect.appendChild(fontOption);
 			}
 			fontsParent.appendChild(fontsSelect);
-			// Génération des couleurs.
+			// Captions colors
 			for (var i = 0; i < colors.length; i++) {
 				var canvas = document.createElement('canvas');
 				canvas.setAttribute('height', '15');
@@ -4204,7 +4183,7 @@ init: function (player, options) {
 					colors[i].dataurl = canvas.toDataURL();
 				}
 			}
-			// Couleur.
+			// Colors
 			var colorParent = document.createElement('div');
 			colorParent.setAttribute('class', 'colors');
 			var colorSimulatedLabel = document.createElement('span');
@@ -4282,9 +4261,8 @@ init: function (player, options) {
 			fontsColorsParent.appendChild(fontsParent);
 			fontsColorsParent.appendChild(colorParent);
 			captionsFieldsetCol2.appendChild(fontsColorsParent);
-			// Taille de la police.
+			// Captions font size
 			var fontSizeValueMin = 1;
-			//var fontSizeValueNow = 20;
 			var fontSizeValueNow = defaultFontsize;
 			var fontSizeValueMax = 50;
 			var fontSizeSliderParent = document.createElement('p');
@@ -4320,7 +4298,7 @@ init: function (player, options) {
 			}
 			captionsFieldsetCol2.appendChild(fontSizeSliderParent);
 			changecss('.video-js .vjs-captions .vjs-tt-cue', 'font-size', (fontSizeValueNow / 10) + 'em');
-			// Ombrage.
+			// Shadows
 			var captionsFieldsetCol3 = document.createElement('div');
 			var shadowParent = document.createElement('div');
 			shadowParent.setAttribute('class', 'colors');
@@ -4353,7 +4331,7 @@ init: function (player, options) {
 						this.setAttribute('class', 'applied');
 						this.setAttribute('title', this.getAttribute('title') + ' (sélectionnée)');
 						this.firstChild.setAttribute('alt', this.getAttribute('title'));
-						var textTrackDisplay = $$('.vjs-text-track-display').pick();
+						var textTrackDisplay = document.querySelector('.vjs-text-track-display');
 						textTrackDisplay.setAttribute('data-shadowhexa', this.getAttribute('data-hexa'));
 						set_opac_color();
 						var button = this.parentNode.previousSibling;
@@ -4373,9 +4351,6 @@ init: function (player, options) {
 				shadowButton.appendChild(shadowButtonImg);
 				shadowList.appendChild(shadowButton);
 			}
-			
-			
-			
 			var shadowButton = document.createElement('button');
 			shadowButton.setAttribute('type', 'button');
 			shadowButton.addEventListener('click', function(event) {
@@ -4398,12 +4373,9 @@ init: function (player, options) {
 			defaultshadowimg.setAttribute('width', '60');
 			shadowButton.appendChild(defaultshadowimg);
 			shadowParent.appendChild(shadowButton);
-			
-			
-			
 			shadowParent.appendChild(shadowList);
 			captionsFieldsetCol3.appendChild(shadowParent);
-			// Opacité.
+			// Opacity.
 			var opacityValueMin = 0;
 			var opacityValueNow = defaultOpacity;
 			var opacityValueMax = 100;
@@ -4492,18 +4464,6 @@ vjs.ConfigControl.prototype.onClick = function() {
 	var captions = this.player_.el_.parentNode.querySelector('.captionssettings');
 	if (captions.getAttribute('hidden')) {
 		this.el_.firstChild.setAttribute('alt', i18n['fr'].configControl.hide);
-		var elements = document.querySelectorAll('a, area, button, input, select, textaea, *[tabindex]');
-		for (var e = 0; e < elements.length; e++) {
-			if (!(elements[e].getAttribute('class') == 'captionssettings') && !elements[e].getParent('.captionssettings')) {
-				if (elements[e].getAttribute('tabindex') != '-1') {
-					if (elements[e].hasAttribute('tabindex')) {
-						elements[e].setAttribute('data-tabindex', elements[e].getAttribute('tabindex'));
-					}
-					elements[e].setAttribute('tabindex', '-1');
-					ofrelements.push(elements[e]);
-				}	
-			}
-		}
 		captions.removeAttribute('hidden');
 		captions.focus();
 		//Escape close the panel
@@ -4512,19 +4472,17 @@ vjs.ConfigControl.prototype.onClick = function() {
 			if (event.keyCode == 27) {
 					captionControlImg.setAttribute('alt', i18n['fr'].configControl.show);
 					captions.setAttribute('hidden', 'hidden');
-					for (var e = 0; e < ofrelements.length; e++) {
-						if (ofrelements[e].hasAttribute('data-tabindex')) {
-							ofrelements[e].setAttribute('tabindex', ofrelements[e].getAttribute('data-tabindex'));
-							ofrelements[e].removeAttribute('data-tabindex');
-						}
-						else {
-							ofrelements[e].removeAttribute('tabindex');
-						}
-					}
 					captionControlImg.parentNode.focus();
 					event.preventDefault();
 			}
 		}, false);
+		//trapping focus
+		document.addEventListener('focus', function(event) {
+			if (!captions.getAttribute('hidden') && !captions.contains(event.target)) {
+				event.stopPropagation();
+				captions.focus();
+			}
+		}, true);
 	}
 	else {
 		this.el_.firstChild.setAttribute('alt', i18n['fr'].configControl.show);
