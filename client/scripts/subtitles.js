@@ -77,7 +77,7 @@ function change_vid_track(tselect){
 	}
 }
 function set_opac_color(){
-	var captions = $$('.video-js .vjs-captions .vjs-tt-cue').pick();
+	var captions = document.querySelector('.video-js .vjs-captions .vjs-tt-cue');
 	if (captions) {
 		var hexa = captions.parentNode.parentNode.getAttribute('data-shadowhexa');
 		changecss('.video-js .vjs-captions .vjs-tt-cue','background-color','rgba('+hexToR(hexa)+','+hexToG(hexa)+','+hexToB(hexa)+','+opac_val+')');
