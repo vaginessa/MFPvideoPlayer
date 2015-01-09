@@ -23,7 +23,7 @@ The HTML code of the player just use the '<div>' element with an 'id' "player", 
 			<source src="client/medias/video_vo.mp4" type="video/mp4" />
 			<source src="client/medias/video_vo.webm" type="video/webm" />
 			<source src="client/medias/video_vo.ogv" type="video/ogg" />
-			<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" data-transcription="server/transcriptions/fr.txt" />
+			<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" />
 		</video>
 		<audio src="client/medias/video_ad.mp3" preload="auto" hidden="hidden"></audio>
 	</div>
@@ -39,10 +39,7 @@ Then, in the 'head' element (between the tags '<head>' and '</head>') of the doc
 	<link rel="stylesheet" href="client/styles/styles.css" type="text/css" />
 	<!-- Internationalisation, images de l'interface et couleurs (paramètres des sous-titres) -->
 	<script src="client/scripts/settings.js" type="text/javascript"></script>
-	<!-- Framework Mootools -->
-	<script src="client/scripts/mootools-core-1.4.5-full-nocompat-yc.js" type="text/javascript"></script>
-	<script src="client/scripts/mootools-more-1.4.0.1.js" type="text/javascript"></script>
-	<!-- VideoJS (remaniée : audiodescription et panneau des paramètres des sous-titres + mise en accessibilité) -->
+	<!-- Fork VideoJS -->
 	<script src="client/scripts/video-js/video.dev.js" type="text/javascript"></script>
 	<!-- Fonctions liées aux paramètres des sous-titres -->
 	<script src="client/scripts/subtitles.js" type="text/javascript"></script>
@@ -63,7 +60,7 @@ Note: you may have to change the path of the resources ('src' in 'script' elemen
 
 In the 'video' element (betweeen the tags '<video>' and '</video>'), in each closed captioning file you must add the following line of code:
 
-	<track kind="captions" label="" src="" srclang="" data-transcription="" />
+	<track kind="captions" label="" src="" srclang="" />
 
 And complete the code following the rules described bellow:
 - 'label' allows you to give a title to the closed captioning file: this title will appear in the dropdowmn list of the closed caption panel;
@@ -96,8 +93,8 @@ Insert the following html code in the video element (exemple with French transcr
 	<video>
 	...
 	<ul class="transcriptlist">
-		<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
-		<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+		<li><a href="mytrancriptFile.htm" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+		<li><a href="server/transcriptions/fr.txt" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
 	</ul>
 	...
 	</video>
@@ -117,7 +114,7 @@ Le code HTML du lecteur est limité à l'élément '<div>' avec un 'id' "player"
 			<source src="client/medias/video_vo.mp4" type="video/mp4" />
 			<source src="client/medias/video_vo.webm" type="video/webm" />
 			<source src="client/medias/video_vo.ogv" type="video/ogg" />
-			<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" data-transcription="server/transcriptions/fr.txt" />
+			<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" />
 		</video>
 		<audio src="client/medias/video_ad.mp3" preload="auto" hidden="hidden"></audio>
 	</div>
@@ -132,9 +129,6 @@ Enfin, dans l'élément 'head' (entre les balises '<head>' et '</head>') de la p
 	<link rel="stylesheet" href="client/styles/styles.css" type="text/css" />
 	<!-- Internationalisation, images de l'interface et couleurs (paramètres des sous-titres) -->
 	<script src="client/scripts/settings.js" type="text/javascript"></script>
-	<!-- Framework Mootools -->
-	<script src="client/scripts/mootools-core-1.4.5-full-nocompat-yc.js" type="text/javascript"></script>
-	<script src="client/scripts/mootools-more-1.4.0.1.js" type="text/javascript"></script>
 	<!-- VideoJS (remaniée : audiodescription et panneau des paramètres des sous-titres + mise en accessibilité) -->
 	<script src="client/scripts/video-js/video.dev.js" type="text/javascript"></script>
 	<!-- Fonctions liées aux paramètres des sous-titres -->
@@ -155,7 +149,7 @@ Note : selon l'emplacement de ces ressources externes, les chemins ('src' des é
 
 Dans l'élément 'video' (entre les balises '<video>' et '</video>'), ajoutez pour chaque fichier de sous-titres la ligne de code suivante :
 
-	<track kind="captions" label="" src="" srclang="" data-transcription="" />
+	<track kind="captions" label="" src="" srclang="" />
 
 Et complétez le code en suivant les règles suivantes :
 - 'label' permet de donner un intitulé au fichier de sous-titres : cet intitulé sera repris dans la liste déroulante du panneau des sous-titres ;
@@ -189,8 +183,8 @@ Insérer le code suivant dans l'élément video (exemple avec une transcription 
 	<video>
 	...
 	<ul class="transcriptlist">
-		<li><a href="mytrancriptFile.htm" target="_blank" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
-		<li><a href="server/transcriptions/fr.txt" target="_blank" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
+		<li><a href="mytrancriptFile.htm" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+		<li><a href="server/transcriptions/fr.txt" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
 	</ul>
 	...
 	</video>

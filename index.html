@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="client/styles/styles.css" type="text/css" />
 		<!-- Internationalisation, images de l'interface et couleurs (paramètres des sous-titres) -->
 		<script src="client/scripts/settings.js" type="text/javascript"></script>
-		<!-- VideoJS (remaniée : audiodescription et panneau des paramètres des sous-titres + mise en accessibilité) -->
+		<!-- Fork VideoJS -->
 		<script src="client/scripts/video-js/video.dev.js" type="text/javascript"></script>
 		<!-- Fonctions liées aux paramètres des sous-titres -->
 		<script src="client/scripts/subtitles.js" type="text/javascript"></script>
@@ -27,12 +27,13 @@
 		<h1>Intégration du player HTML5 (avec sous-titres et audiodescription)</h1>
 				<div id="player">
 					<video id="video" controls="controls" height="480" width="640">
-						<source src="client/medias/videosample.mp4" type="video/mp4" />
-						<source src="client/medias/videosample.webm" type="video/webm" />
-						<source src="client/medias/videosample.ogv" type="video/ogg" />
+						<source src="client/medias/video_vo.mp4" type="video/mp4" />
+						<source src="client/medias/video_vo.webm" type="video/webm" />
+						<source src="client/medias/video_vo.ogv" type="video/ogg" />
 						<track kind="captions" label="Français" src="client/captions/fr.srt" srclang="fr" />
 					<ul class="transcriptlist">
-						<li><a href="" title="transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+						<li><a href="mytrancriptFile.htm" title="Transcription française - HTML - nouvelle fenêtre">Transcription française - HTML</a></li>
+						<li><a href="server/transcriptions/fr.txt" title="Transcription du sous-titrage - TXT">Transcription du sous-titrage - TXT</a></li>
 					</ul>
 					</video>
 					<audio src="client/medias/videosample.mp3" preload="auto" hidden="hidden"></audio>
