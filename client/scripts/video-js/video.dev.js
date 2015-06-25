@@ -2205,10 +2205,10 @@ vjs.Slider.prototype.onFocus = function(){
 };
 
 vjs.Slider.prototype.onKeyPress = function(event){
-  if (event.which == 37) { // Left Arrow
+  if (event.which == 37 || event.which == 40) { // Left Arrow and Down Arrow
     event.preventDefault();
     this.stepBack();
-  } else if (event.which == 39) { // Right Arrow
+  } else if (event.which == 39 || event.which == 38) { // Right Arrow and Up Arrow
     event.preventDefault();
     this.stepForward();
   }
